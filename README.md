@@ -487,4 +487,4 @@ PRs are welcome. Please:
 
 ## License
 
-MIT © 2024 hammadryaz
+MIT © 2026 hammadryaz
