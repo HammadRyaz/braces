@@ -458,7 +458,7 @@ The package ships:
 ## Contributing
 
 ```bash
-git clone https://github.com/hammadhammadryaz/braces
+git clone https://github.com/hammadryaz/braces
 cd braces && npm install
 npm run test:watch    # TDD mode
 npm run typecheck     # type safety
@@ -487,4 +487,4 @@ PRs are welcome. Please:
 
 ## License
 
-MIT © 2026 hammadhammadryaz
+MIT © 2026 hammadryaz
