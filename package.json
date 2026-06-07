@@ -1,0 +1,81 @@
+{
+  "name": "@ryaz/braces",
+  "version": "2.0.0",
+  "description": "A tiny, fast, dependency-free template engine for universal {curly-brace} interpolation. TypeScript-first, XSS-safe, filter pipes, streaming SSR.",
+  "keywords": [
+    "template",
+    "interpolation",
+    "curly-brace",
+    "render",
+    "string",
+    "template-engine",
+    "mustache",
+    "lightweight",
+    "zero-dependency",
+    "typescript",
+    "ssr",
+    "streaming",
+    "filters",
+    "xss-safe"
+  ],
+  "author": "Hammad Ryaz",
+  "license": "MIT",
+  "homepage": "https://github.com/hammadryaz/braces#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hammadryaz/braces.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hammadryaz/braces/issues"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      },
+      "default": "./dist/esm/index.js"
+    }
+  },
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "dev": "tsc --project tsconfig.esm.json --watch",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc --project tsconfig.esm.json",
+    "build:cjs": "tsc --project tsconfig.cjs.json && node scripts/fix-cjs.js",
+    "clean": "rimraf dist",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "bench": "node --loader ts-node/esm benchmarks/bench.ts",
+    "size": "bundlejs --entry src/index.ts",
+    "prepublishOnly": "npm run build && npm test && npm run typecheck"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^1.6.1",
+    "rimraf": "^6.1.3",
+    "typescript": "^5.9.3",
+    "vitest": "^1.6.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
