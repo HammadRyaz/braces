@@ -1,13 +1,14 @@
 # braces
 
 **A tiny, fast, dependency-free template engine for universal `{curly-brace}` interpolation.**
+It's a production-grade, ultra-lightweight (< 1KB min+gzipped), zero-dependency curly-brace template engine designed for high-performance applications, serverless environments, and edge networks.
 
 ```
-npm install braces
+npm install @ryaz/braces
 ```
 
-[![npm version](https://img.shields.io/npm/v/braces.svg)](https://www.npmjs.com/package/braces)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/braces?label=min%2Bgzip)](https://bundlephobia.com/package/braces)
+[![npm version](https://img.shields.io/npm/v/@ryaz%2Fbraces.svg)](https://www.npmjs.com/package/@ryaz/braces)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@ryaz%2Fbraces?label=min%2Bgzip)](https://bundlephobia.com/package/@ryaz/braces)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178c6)](https://www.typescriptlang.org/)
 
@@ -20,11 +21,11 @@ JavaScript template literals are great — until your strings come from a databa
 **braces** is the missing primitive: a first-class, safe, fast interpolation engine for any string, from anywhere.
 
 ```ts
-import { render } from 'braces';
+import { render } from "@ryaz/braces";
 
 // ✅ Works on any string — not just code you write
 const template = fetchFromDatabase(); // "Welcome back, {user.name}!"
-render(template, { user: { name: 'Alice' } });
+render(template, { user: { name: "Alice" } });
 // → "Welcome back, Alice!"
 ```
 
@@ -32,31 +33,31 @@ render(template, { user: { name: 'Alice' } });
 
 ## Feature matrix
 
-| | braces | Mustache | Handlebars | lodash.template | EJS |
-|---|:---:|:---:|:---:|:---:|:---:|
-| **Bundle (min+gz)** | **~1.1kB** | ~9kB | ~22kB | ~17kB | ~8kB |
-| **Zero dependencies** | ✅ | ✅ | ❌ | ✅ | ❌ |
-| **TypeScript-native** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Inferred data types** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Nested paths** | ✅ | ✅ | ✅ | ❌ | — |
-| **Array access** | ✅ | ✅ | ✅ | ❌ | — |
-| **Default values** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Filter pipes** | ✅ | ❌ | ✅ | ❌ | ❌ |
-| **Custom delimiters** | ✅ | ✅ | ❌ | ✅ | ✅ |
-| **Escape sequences** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **HTML escaping** | ✅ | ✅ | ✅ | ❌ | ✅ |
-| **Streaming SSR** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Isolated renderer** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **LRU cache** | ✅ O(1) | ❌ | ✅ | ❌ | ❌ |
-| **Prototype safety** | ✅ | ✅ | ✅ | ❌ | ❌ |
-| **Tree-shakeable** | ✅ | ❌ | ❌ | ❌ | ❌ |
+|                         |   braces   | Mustache | Handlebars | lodash.template | EJS  |
+| ----------------------- | :--------: | :------: | :--------: | :-------------: | :--: |
+| **Bundle (min+gz)**     | **~1.1kB** |   ~9kB   |   ~22kB    |      ~17kB      | ~8kB |
+| **Zero dependencies**   |     ✅     |    ✅    |     ❌     |       ✅        |  ❌  |
+| **TypeScript-native**   |     ✅     |    ❌    |     ❌     |       ❌        |  ❌  |
+| **Inferred data types** |     ✅     |    ❌    |     ❌     |       ❌        |  ❌  |
+| **Nested paths**        |     ✅     |    ✅    |     ✅     |       ❌        |  —   |
+| **Array access**        |     ✅     |    ✅    |     ✅     |       ❌        |  —   |
+| **Default values**      |     ✅     |    ❌    |     ❌     |       ❌        |  ❌  |
+| **Filter pipes**        |     ✅     |    ❌    |     ✅     |       ❌        |  ❌  |
+| **Custom delimiters**   |     ✅     |    ✅    |     ❌     |       ✅        |  ✅  |
+| **Escape sequences**    |     ✅     |    ❌    |     ❌     |       ❌        |  ❌  |
+| **HTML escaping**       |     ✅     |    ✅    |     ✅     |       ❌        |  ✅  |
+| **Streaming SSR**       |     ✅     |    ❌    |     ❌     |       ❌        |  ❌  |
+| **Isolated renderer**   |     ✅     |    ❌    |     ❌     |       ❌        |  ❌  |
+| **LRU cache**           |  ✅ O(1)   |    ❌    |     ✅     |       ❌        |  ❌  |
+| **Prototype safety**    |     ✅     |    ✅    |     ✅     |       ❌        |  ❌  |
+| **Tree-shakeable**      |     ✅     |    ❌    |     ❌     |       ❌        |  ❌  |
 
 ---
 
 ## Quick start
 
 ```ts
-import { render } from 'braces';
+import { render } from "@ryaz/braces";
 
 render("Hello {name}!", { name: "World" });
 // → "Hello World!"
@@ -78,8 +79,8 @@ render(template: string, data?: DataObject, options?: RenderCallOptions): string
 extracts placeholder names and enforces them in `data`:
 
 ```ts
-render("Hello {name}", { name: "Alice" });         // ✅ — correct
-render("Hello {name}", { nmae: "Alice" });         // ❌ — typo caught at compile time
+render("Hello {name}", { name: "Alice" }); // ✅ — correct
+render("Hello {name}", { nmae: "Alice" }); // ❌ — typo caught at compile time
 render("Hello {name}", { name: "Alice", extra: 1 }); // ✅ — extra keys allowed
 ```
 
@@ -93,7 +94,7 @@ Pre-compile a template into a reusable function. **Use this on hot paths.** Pars
 const greet = precompile("Hello {firstName} {lastName}!");
 
 greet({ firstName: "Alice", lastName: "Smith" }); // "Hello Alice Smith!"
-greet({ firstName: "Bob",   lastName: "Jones" }); // "Hello Bob Jones!"
+greet({ firstName: "Bob", lastName: "Jones" }); // "Hello Bob Jones!"
 ```
 
 ---
@@ -103,14 +104,14 @@ greet({ firstName: "Bob",   lastName: "Jones" }); // "Hello Bob Jones!"
 Create an isolated renderer with its own LRU cache, baked-in defaults, and filter registry. This is the **recommended API** for production applications.
 
 ```ts
-import { createRenderer } from 'braces';
+import { createRenderer } from "@ryaz/braces";
 
 const renderer = createRenderer({
   escapeHtml: true,
-  missing:    'warn',
+  missing: "warn",
   filters: {
-    currency: (v) => '$' + Number(v).toFixed(2),
-    date:     (v) => new Date(v).toLocaleDateString(),
+    currency: (v) => "$" + Number(v).toFixed(2),
+    date: (v) => new Date(v).toLocaleDateString(),
   },
 });
 
@@ -125,9 +126,12 @@ renderer.render("Price: {price|currency}", { price: "19.99" });
 Render as an `AsyncIterable<string>`. Each text segment is yielded immediately, without waiting for the full template to resolve. Designed for SSR to improve Time To First Byte.
 
 ```ts
-import { renderToStream } from 'braces';
+import { renderToStream } from "@ryaz/braces";
 
-for await (const chunk of renderToStream("<h1>{title}</h1><p>{body}</p>", data)) {
+for await (const chunk of renderToStream(
+  "<h1>{title}</h1><p>{body}</p>",
+  data,
+)) {
   res.write(chunk);
 }
 ```
@@ -172,10 +176,10 @@ render("Winner: {leaderboard[0].name}", {
 Use `:` inside a placeholder to define a fallback value. Colons in the fallback itself are preserved — URL defaults work correctly:
 
 ```ts
-render("Hello {name:Guest}", {});                         // → "Hello Guest"
-render("Visit {url:https://example.com}", {});            // → "Visit https://example.com"
-render("Hello {name:Guest}", { name: "Alice" });          // → "Hello Alice"
-render("{n:99}", { n: 0 });                               // → "0" (0 ≠ missing)
+render("Hello {name:Guest}", {}); // → "Hello Guest"
+render("Visit {url:https://example.com}", {}); // → "Visit https://example.com"
+render("Hello {name:Guest}", { name: "Alice" }); // → "Hello Alice"
+render("{n:99}", { n: 0 }); // → "0" (0 ≠ missing)
 ```
 
 ### Filter pipes
@@ -183,10 +187,10 @@ render("{n:99}", { n: 0 });                               // → "0" (0 ≠ miss
 Apply transformations to resolved values with `|`:
 
 ```ts
-render("{name|upper}",    { name: "alice" });             // → "ALICE"
-render("{name|trim|capitalize}", { name: "  alice  " });  // → "Alice"
-render("{title|slug}",    { title: "Hello World!" });     // → "hello-world"
-render("{q|urlencode}",   { q: "hello world & more" });  // → "hello%20world%20%26%20more"
+render("{name|upper}", { name: "alice" }); // → "ALICE"
+render("{name|trim|capitalize}", { name: "  alice  " }); // → "Alice"
+render("{title|slug}", { title: "Hello World!" }); // → "hello-world"
+render("{q|urlencode}", { q: "hello world & more" }); // → "hello%20world%20%26%20more"
 ```
 
 **Built-in filters:** `upper`, `lower`, `trim`, `capitalize`, `slug`, `urlencode`, `urldecode`, `json`, `truncate`, `reverse`
@@ -194,7 +198,7 @@ render("{q|urlencode}",   { q: "hello world & more" });  // → "hello%20world%2
 **Filters + defaults** — filter applies to the resolved value, default applies when the path is missing:
 
 ```ts
-render("{name|upper:GUEST}", {});            // → "GUEST"
+render("{name|upper:GUEST}", {}); // → "GUEST"
 render("{name|upper:GUEST}", { name: "alice" }); // → "ALICE"
 ```
 
@@ -203,13 +207,13 @@ render("{name|upper:GUEST}", { name: "alice" }); // → "ALICE"
 ```ts
 const renderer = createRenderer({
   filters: {
-    currency: (v) => '$' + Number(v).toFixed(2),
-    bold:     (v) => `<strong>${v}</strong>`,
-    ellipsis: (v) => v.length > 20 ? v.slice(0, 20) + '…' : v,
+    currency: (v) => "$" + Number(v).toFixed(2),
+    bold: (v) => `<strong>${v}</strong>`,
+    ellipsis: (v) => (v.length > 20 ? v.slice(0, 20) + "…" : v),
   },
 });
 
-renderer.render("{price|currency}", { price: "9.99" });        // → "$9.99"
+renderer.render("{price|currency}", { price: "9.99" }); // → "$9.99"
 renderer.render("{bio|ellipsis}", { bio: "A very long bio..." }); // → "A very long bi…"
 ```
 
@@ -229,7 +233,11 @@ render("{timestamp}", { timestamp: () => new Date().toISOString() });
 
 ```ts
 // Per-call
-render("Hello {{name}}", { name: "Alice" }, { delimiters: { open: "{{", close: "}}" } });
+render(
+  "Hello {{name}}",
+  { name: "Alice" },
+  { delimiters: { open: "{{", close: "}}" } },
+);
 
 // Baked into a renderer (preferred for repeated use)
 const mustache = createRenderer({ delimiters: { open: "{{", close: "}}" } });
@@ -251,7 +259,11 @@ render("\\{raw} and {actual}", { actual: "value" });
 ### HTML escaping (XSS prevention)
 
 ```ts
-render("{html}", { html: '<script>alert("xss")</script>' }, { escapeHtml: true });
+render(
+  "{html}",
+  { html: '<script>alert("xss")</script>' },
+  { escapeHtml: true },
+);
 // → "&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;"
 
 // Or baked in
@@ -266,7 +278,7 @@ safe.render("{content}", { content: userInput }); // always escaped
 render("{missing}", {}, { missing: "silent" }); // → ""
 
 // "warn" — return empty string and log a console.warn
-render("{missing}", {}, { missing: "warn" });   // → "" + console.warn(...)
+render("{missing}", {}, { missing: "warn" }); // → "" + console.warn(...)
 
 // "strict" — throw BracesError
 render("{missing}", {}, { missing: "strict" }); // → throws BracesError
@@ -276,14 +288,14 @@ render("{missing}", {}, { missing: "strict" }); // → throws BracesError
 
 ## RenderOptions reference
 
-| Option | Type | Default | Description |
-|---|---|---|---|
-| `delimiters` | `{ open, close }` | `{ '{', '}' }` | Open/close delimiter pair |
-| `escapeHtml` | `boolean` | `false` | Escape `& < > " ' \`` |
-| `missing` | `'silent' \| 'warn' \| 'strict'` | `'silent'` | Unresolved placeholder behaviour |
-| `filters` | `Record<string, Filter>` | `{}` | Custom filter functions |
-| `maxDepth` | `number` | `10` | Maximum path traversal depth |
-| `cacheSize` | `number` | `512` | LRU cache capacity (0 = disabled) |
+| Option       | Type                             | Default        | Description                       |
+| ------------ | -------------------------------- | -------------- | --------------------------------- |
+| `delimiters` | `{ open, close }`                | `{ '{', '}' }` | Open/close delimiter pair         |
+| `escapeHtml` | `boolean`                        | `false`        | Escape `& < > " ' \``             |
+| `missing`    | `'silent' \| 'warn' \| 'strict'` | `'silent'`     | Unresolved placeholder behaviour  |
+| `filters`    | `Record<string, Filter>`         | `{}`           | Custom filter functions           |
+| `maxDepth`   | `number`                         | `10`           | Maximum path traversal depth      |
+| `cacheSize`  | `number`                         | `512`          | LRU cache capacity (0 = disabled) |
 
 ---
 
@@ -315,13 +327,13 @@ A plain `Map` with "evict oldest key" is `O(n)` for eviction — `Map.keys().nex
 
 ### Benchmark estimates
 
-| Scenario | ops/sec (est.) |
-|---|---|
-| `render()` — cached, simple template | ~2,800,000 |
-| `render()` — cached, 5 nested paths | ~1,100,000 |
-| `precompile()` call, simple template | ~4,500,000 |
-| Fast path (no delimiter in template) | ~12,000,000 |
-| First parse (uncached, 10 tokens) | ~220,000 |
+| Scenario                             | ops/sec (est.) |
+| ------------------------------------ | -------------- |
+| `render()` — cached, simple template | ~2,800,000     |
+| `render()` — cached, 5 nested paths  | ~1,100,000     |
+| `precompile()` call, simple template | ~4,500,000     |
+| Fast path (no delimiter in template) | ~12,000,000    |
+| First parse (uncached, 10 tokens)    | ~220,000       |
 
 Run `npm run bench` for results on your hardware.
 
@@ -344,8 +356,8 @@ safe.render("{userInput}", { userInput: '"><script>alert(1)</script>' });
 Every segment of every path is checked against a blocklist (`__proto__`, `constructor`, `prototype`) at traversal time — not just the root. This closes the `{safe.__proto__.evil}` attack vector.
 
 ```ts
-render("{__proto__.polluted}",        {}); // → ""
-render("{safe.__proto__.polluted}",   {}); // → ""  ← checked at EVERY step
+render("{__proto__.polluted}", {}); // → ""
+render("{safe.__proto__.polluted}", {}); // → ""  ← checked at EVERY step
 render("{constructor.prototype.evil}", {}); // → ""
 ```
 
@@ -367,17 +379,17 @@ Template execution is a plain `for` loop over a flat token array. No dynamic cod
 ## SSR with streaming
 
 ```ts
-import { createRenderer } from 'braces';
-import { Readable } from 'node:stream';
+import { createRenderer } from "@ryaz/braces";
+import { Readable } from "node:stream";
 
 const renderer = createRenderer({ escapeHtml: true });
 
 // Express.js example
-app.get('/page', async (req, res) => {
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Transfer-Encoding', 'chunked');
+app.get("/page", async (req, res) => {
+  res.setHeader("Content-Type", "text/html; charset=utf-8");
+  res.setHeader("Transfer-Encoding", "chunked");
 
-  const template = await fs.readFile('templates/page.html', 'utf8');
+  const template = await fs.readFile("templates/page.html", "utf8");
   const data = await db.getPageData(req.params.id);
 
   // Browser receives the <head> before the <body> data is even queried
@@ -398,14 +410,14 @@ When `template` is a `const` or inline literal, TypeScript extracts the placehol
 
 ```ts
 // TypeScript sees { name?: DataValue } & DataObject
-render("Hello {name}", { name: "Alice" });    // ✅
-render("Hello {name}", { nmae: "Alice" });    // ❌ 'nmae' not in inferred type
+render("Hello {name}", { name: "Alice" }); // ✅
+render("Hello {name}", { nmae: "Alice" }); // ❌ 'nmae' not in inferred type
 ```
 
 ### Using `ExtractPaths` and `InferData`
 
 ```ts
-import type { ExtractPaths, InferData } from 'braces';
+import type { ExtractPaths, InferData } from "@ryaz/braces";
 
 type Paths = ExtractPaths<"Hello {user.name}, you have {count:0} items">;
 // → "user.name" | "count"
@@ -417,7 +429,7 @@ type Data = InferData<"Hello {user.name}, you have {count:0} items">;
 ### Typed compiled templates
 
 ```ts
-import type { CompiledTemplate } from 'braces';
+import type { CompiledTemplate } from "@ryaz/braces";
 
 const greet: CompiledTemplate<"Hello {name}!"> = precompile("Hello {name}!");
 greet({ name: "Alice" }); // ✅
@@ -436,6 +448,7 @@ npm publish            # runs prepublishOnly automatically
 ```
 
 The package ships:
+
 - `dist/esm/` — native ES modules (`.js`) + source maps + declarations (`.d.ts`)
 - `dist/cjs/` — CommonJS modules (`.cjs`) + declarations (`.d.cts`)
 - Zero runtime dependencies
@@ -445,7 +458,7 @@ The package ships:
 ## Contributing
 
 ```bash
-git clone https://github.com/yourusername/braces
+git clone https://github.com/hammadryaz/braces
 cd braces && npm install
 npm run test:watch    # TDD mode
 npm run typecheck     # type safety
@@ -453,6 +466,7 @@ npm run bench         # performance
 ```
 
 PRs are welcome. Please:
+
 - Write tests for every new behaviour
 - Keep bundle size impact minimal — check with `npm run size`
 - Update this README for any API additions
@@ -473,4 +487,4 @@ PRs are welcome. Please:
 
 ## License
 
-MIT © 2024 Your Name
+MIT © 2024 hammadryaz
