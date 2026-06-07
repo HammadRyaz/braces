@@ -4,11 +4,11 @@
 It's a production-grade, ultra-lightweight (< 1KB min+gzipped), zero-dependency curly-brace template engine designed for high-performance applications, serverless environments, and edge networks.
 
 ```
-npm install @ryaz/braces
+npm install @hammadryaz/braces
 ```
 
-[![npm version](https://img.shields.io/npm/v/@ryaz%2Fbraces.svg)](https://www.npmjs.com/package/@ryaz/braces)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/@ryaz%2Fbraces?label=min%2Bgzip)](https://bundlephobia.com/package/@ryaz/braces)
+[![npm version](https://img.shields.io/npm/v/@hammadryaz%2Fbraces.svg)](https://www.npmjs.com/package/@hammadryaz/braces)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@hammadryaz%2Fbraces?label=min%2Bgzip)](https://bundlephobia.com/package/@hammadryaz/braces)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178c6)](https://www.typescriptlang.org/)
 
@@ -21,7 +21,7 @@ JavaScript template literals are great — until your strings come from a databa
 **braces** is the missing primitive: a first-class, safe, fast interpolation engine for any string, from anywhere.
 
 ```ts
-import { render } from "@ryaz/braces";
+import { render } from "@hammadryaz/braces";
 
 // ✅ Works on any string — not just code you write
 const template = fetchFromDatabase(); // "Welcome back, {user.name}!"
@@ -57,7 +57,7 @@ render(template, { user: { name: "Alice" } });
 ## Quick start
 
 ```ts
-import { render } from "@ryaz/braces";
+import { render } from "@hammadryaz/braces";
 
 render("Hello {name}!", { name: "World" });
 // → "Hello World!"
@@ -104,7 +104,7 @@ greet({ firstName: "Bob", lastName: "Jones" }); // "Hello Bob Jones!"
 Create an isolated renderer with its own LRU cache, baked-in defaults, and filter registry. This is the **recommended API** for production applications.
 
 ```ts
-import { createRenderer } from "@ryaz/braces";
+import { createRenderer } from "@hammadryaz/braces";
 
 const renderer = createRenderer({
   escapeHtml: true,
@@ -126,7 +126,7 @@ renderer.render("Price: {price|currency}", { price: "19.99" });
 Render as an `AsyncIterable<string>`. Each text segment is yielded immediately, without waiting for the full template to resolve. Designed for SSR to improve Time To First Byte.
 
 ```ts
-import { renderToStream } from "@ryaz/braces";
+import { renderToStream } from "@hammadryaz/braces";
 
 for await (const chunk of renderToStream(
   "<h1>{title}</h1><p>{body}</p>",
@@ -379,7 +379,7 @@ Template execution is a plain `for` loop over a flat token array. No dynamic cod
 ## SSR with streaming
 
 ```ts
-import { createRenderer } from "@ryaz/braces";
+import { createRenderer } from "@hammadryaz/braces";
 import { Readable } from "node:stream";
 
 const renderer = createRenderer({ escapeHtml: true });
@@ -417,7 +417,7 @@ render("Hello {name}", { nmae: "Alice" }); // ❌ 'nmae' not in inferred type
 ### Using `ExtractPaths` and `InferData`
 
 ```ts
-import type { ExtractPaths, InferData } from "@ryaz/braces";
+import type { ExtractPaths, InferData } from "@hammadryaz/braces";
 
 type Paths = ExtractPaths<"Hello {user.name}, you have {count:0} items">;
 // → "user.name" | "count"
@@ -429,7 +429,7 @@ type Data = InferData<"Hello {user.name}, you have {count:0} items">;
 ### Typed compiled templates
 
 ```ts
-import type { CompiledTemplate } from "@ryaz/braces";
+import type { CompiledTemplate } from "@hammadryaz/braces";
 
 const greet: CompiledTemplate<"Hello {name}!"> = precompile("Hello {name}!");
 greet({ name: "Alice" }); // ✅
@@ -458,7 +458,7 @@ The package ships:
 ## Contributing
 
 ```bash
-git clone https://github.com/hammadryaz/braces
+git clone https://github.com/hammadhammadryaz/braces
 cd braces && npm install
 npm run test:watch    # TDD mode
 npm run typecheck     # type safety
@@ -487,4 +487,4 @@ PRs are welcome. Please:
 
 ## License
 
-MIT © 2026 hammadryaz
+MIT © 2026 hammadhammadryaz
