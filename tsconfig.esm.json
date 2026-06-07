@@ -6,5 +6,6 @@
     "moduleResolution": "NodeNext",
     "declaration": true
   },
+  
   "exclude": ["node_modules", "dist", "bench.ts", "index.test.ts"]
 }
