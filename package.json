@@ -1,6 +1,6 @@
 {
   "name": "@hammadryaz/braces",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A tiny, fast, dependency-free template engine for universal {curly-brace} interpolation. TypeScript-first, XSS-safe, filter pipes, streaming SSR.",
   "keywords": [
     "template",
