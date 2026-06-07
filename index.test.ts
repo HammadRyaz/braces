@@ -13,7 +13,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import {
   render, precompile, renderToStream, clearCache, getCacheSize,
   createRenderer, escapeHtml, escapeAttr, BUILT_IN_FILTERS, BracesError,
-} from '../src/index.js';
+} from './index.js';
 
 // ═════════════════════════════════════════════════════════════════════════════
 // 1. Core render() — basic interpolation
@@ -395,7 +395,7 @@ describe('escapeHtml() utility', () => {
 
 describe('escapeAttr() utility', () => {
   it('escapes newlines inside attribute values', async () => {
-    const { escapeAttr } = await import('../src/escaper.js');
+    const { escapeAttr } = await import('./escaper.js');
     expect(escapeAttr('line1\nline2')).toBe('line1 line2');
   });
 });
@@ -661,7 +661,7 @@ describe('LRU cache', () => {
 
 describe('LRUCache unit tests', () => {
   it('respects capacity and evicts LRU on overflow', async () => {
-    const { LRUCache } = await import('../src/cache.js');
+    const { LRUCache } = await import('./cache.js');
     const cache = new LRUCache<string, number>(3);
     cache.set('a', 1).set('b', 2).set('c', 3);
     cache.get('a'); // promote 'a' to MRU
@@ -672,7 +672,7 @@ describe('LRUCache unit tests', () => {
   });
 
   it('updates value for existing key without growing size', async () => {
-    const { LRUCache } = await import('../src/cache.js');
+    const { LRUCache } = await import('./cache.js');
     const cache = new LRUCache<string, number>(5);
     cache.set('a', 1);
     cache.set('a', 99);
@@ -681,7 +681,7 @@ describe('LRUCache unit tests', () => {
   });
 
   it('throws on invalid capacity', async () => {
-    const { LRUCache } = await import('../src/cache.js');
+    const { LRUCache } = await import('./cache.js');
     expect(() => new LRUCache(0)).toThrow(RangeError);
     expect(() => new LRUCache(-1)).toThrow(RangeError);
   });
